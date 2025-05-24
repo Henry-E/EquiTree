@@ -70,6 +70,7 @@ export default function Dashboard() {
   const handleClaim = () => {
     alert(`Claimed $${displayTotal.toFixed(4)}`);
     setPlatforms(prev => prev.map(p => ({ ...p, amount: 0 })));
+    setDisplayTotal(0);
   };
 
   return (
