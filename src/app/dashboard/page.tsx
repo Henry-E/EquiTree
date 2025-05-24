@@ -98,7 +98,7 @@ export default function Dashboard() {
       <header className="container mx-auto px-6 mt-6">
         <div className="bg-gradient-to-r from-sageMint to-emerald text-background rounded-2xl p-6 flex items-center justify-between shadow-lg">
           <div>
-            <h2 className="text-2xl font-header">Welcome back, Alex!</h2>
+            <h2 className="text-2xl font-header">Welcome back!</h2>
           </div>
           <button onClick={handleClaim} className="bg-peachPink text-background px-4 py-2 rounded-full font-semibold shadow hover:shadow-lg transition">
             Claim Earnings: ${displayTotal.toFixed(4)}
@@ -122,8 +122,8 @@ export default function Dashboard() {
             </div>
             {/* Platform Cards */}
             {platforms.map((p, index) => (
-              <div key={index} className="bg-cream rounded-2xl p-6 shadow-md hover:shadow-lg transition relative group">
-                <div className="absolute top-2 right-2">
+              <div key={index} className="bg-cream rounded-2xl p-6 shadow-md hover:shadow-lg transition relative">
+                <div className="absolute top-2 right-2 group">
                   <svg width="24" height="24" viewBox="0 0 100 100" className="cursor-help transition-transform hover:scale-110">
                     <title>Powered by Chainlink oracles</title>
                     <polygon points="50 0 93.3 25 93.3 75 50 100 6.7 75 6.7 25" fill="#375BD2" />
