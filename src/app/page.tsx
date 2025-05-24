@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   const handleConnect = async () => {
-    if (typeof window !== 'undefined' && (window as any).ethereum) {
+    if (typeof window !== 'undefined' && window.ethereum) {
       try {
-        const accounts: string[] = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+        const accounts: string[] = await window.ethereum.request({ method: 'eth_requestAccounts' });
         if (accounts.length) router.push('/dashboard');
       } catch (err) {
         console.error(err);

@@ -23,8 +23,8 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).ethereum) {
-      (window as any).ethereum
+    if (typeof window !== "undefined" && window.ethereum) {
+      window.ethereum
         .request({ method: "eth_accounts" })
         .then((accounts: string[]) => {
           if (accounts.length) {
