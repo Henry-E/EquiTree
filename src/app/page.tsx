@@ -1,101 +1,100 @@
-import Image from "next/image";
+"use client";
+import React from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const router = useRouter();
+  const handleConnect = async () => {
+    if (typeof window !== 'undefined' && (window as any).ethereum) {
+      try {
+        const accounts: string[] = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length) router.push('/dashboard');
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      alert('Please install MetaMask');
+    }
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="relative z-0 min-h-screen bg-gradient-to-br from-lavenderMist to-cream overflow-hidden">
+      <main className="relative z-10 container mx-auto px-4 py-24 text-center">
+        <h1 className="text-4xl sm:text-6xl font-header text-charcoal">Your apps. Your equity. Your income.</h1>
+        <p className="mt-4 text-lg text-dustyPlum">Turn everyday digital interactions into ownership and monthly dividends</p>
+        {/* How It Works */}
+        <section className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="bg-gradient-to-br from-white to-lavenderMist shadow-md p-6 rounded-2xl flex flex-col items-center">
+            <div className="text-4xl">📱</div>
+            <h3 className="mt-4 text-xl font-header text-charcoal">Use Apps You Love</h3>
+            <p className="mt-2 text-sm text-dustyPlum text-center">Continue using your favorite platforms normally.</p>
+          </div>
+          <div className="bg-gradient-to-br from-white to-lavenderMist shadow-md p-6 rounded-2xl flex flex-col items-center">
+            <div className="text-4xl">🌱</div>
+            <h3 className="mt-4 text-xl font-header text-charcoal">Earn Ownership Shares</h3>
+            <p className="mt-2 text-sm text-dustyPlum text-center">Every interaction grows your stake over time.</p>
+          </div>
+          <div className="bg-gradient-to-br from-white to-lavenderMist shadow-md p-6 rounded-2xl flex flex-col items-center">
+            <div className="text-4xl">🔄</div>
+            <h3 className="mt-4 text-xl font-header text-charcoal">Receive Continuous Dividends</h3>
+            <p className="mt-2 text-sm text-dustyPlum text-center">Payouts flow continuously from decentralized sources.</p>
+          </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 text-center">
+          <h2 className="text-2xl font-header text-charcoal">Ready to join the ownership economy?</h2>
+          <button onClick={handleConnect} className="mt-4 inline-flex items-center px-6 py-3 rounded-full bg-peachPink text-background text-lg font-semibold shadow-lg hover:shadow-2xl transition">
+            Connect Wallet
+          </button>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      {/* Animated gradient blobs */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="animated-blob blob1"></div>
+        <div className="animated-blob blob2"></div>
+        <div className="animated-blob blob3"></div>
+        <div className="animated-blob blob4"></div>
+      </div>
+      <style jsx global>{`
+        .animated-blob {
+          position: fixed;
+          width: 500px;
+          height: 500px;
+          border-radius: 50%;
+          filter: blur(40px);
+          opacity: 0.4;
+          will-change: transform, opacity;
+        }
+        .blob1 {
+          background: radial-gradient(circle, #F8F5FF 20%, transparent 70%);
+          top: -100px;
+          left: -100px;
+          animation: blob1Anim 30s ease-in-out infinite;
+        }
+        .blob2 {
+          background: radial-gradient(circle, #FFB5A7 20%, transparent 70%);
+          top: 20%;
+          right: -150px;
+          animation: blob2Anim 35s ease-in-out infinite;
+        }
+        .blob3 {
+          background: radial-gradient(circle, #A8D5BA 20%, transparent 70%);
+          bottom: -100px;
+          left: 10%;
+          animation: blob3Anim 40s ease-in-out infinite;
+        }
+        .blob4 {
+          background: radial-gradient(circle, #8B7FB8 20%, transparent 70%);
+          bottom: 10%;
+          right: -100px;
+          animation: blob4Anim 25s ease-in-out infinite;
+        }
+        @keyframes blob1Anim { 0%,100% { transform:translate(0,0) scale(1); opacity:0.2; } 50% { transform:translate(30px,20px) scale(1.3); opacity:0.6; } }
+        @keyframes blob2Anim { 0%,100% { transform:translate(0,0) scale(1); opacity:0.2; } 50% { transform:translate(-30px,25px) scale(1.2); opacity:0.6; } }
+        @keyframes blob3Anim { 0%,100% { transform:translate(0,0) scale(1); opacity:0.2; } 50% { transform:translate(25px,-30px) scale(1.3); opacity:0.6; } }
+        @keyframes blob4Anim { 0%,100% { transform:translate(0,0) scale(1); opacity:0.2; } 50% { transform:translate(-20px,-20px) scale(1.2); opacity:0.6; } }
+      `}</style>
     </div>
   );
 }
