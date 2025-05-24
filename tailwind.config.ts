@@ -20,6 +20,18 @@ export default {
         grayDiv: "#F0EFF4",
         background: "var(--background)",
         foreground: "var(--foreground)",
+        chainlink: "#375BD2",
+        filecoin: "#0090FF",
+      },
+      keyframes: {
+        glowBlue: {
+          '0%, 100%': { boxShadow: '0 0 0 rgba(55,91,210,0)' },
+          '50%': { boxShadow: '0 0 10px rgba(55,91,210,0.5)' },
+        },
+      },
+      animation: {
+        'glow-blue': 'glowBlue 2s ease-in-out infinite',
+        'pulse-logo': 'pulse 1s infinite',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui'],
